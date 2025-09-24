@@ -11,45 +11,37 @@ class NevBarScreen extends GetView<NevBarController> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Obx(() => controller.screen[controller.curratInx]),
+
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => controller.changeInx(1),
+        heroTag: null,
+        backgroundColor: Colors.redAccent,
+
+        child: const Icon(CupertinoIcons.delete, color: Colors.white),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+
       bottomNavigationBar: Obx(() {
-        return ClipRRect(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(35.sp),
-            topRight: Radius.circular(35.sp),
-          ),
-          child: Container(
-            decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
-                  blurRadius: 10,
-                  offset: Offset(0, -5),
-                ),
-              ],
-            ),
-            child: BottomNavigationBar(
-              type: BottomNavigationBarType.fixed,
-              currentIndex: controller.curratInx,
-              selectedItemColor: Colors.white,
-              unselectedItemColor: Colors.grey,
-              backgroundColor: Colors.blueGrey,
-              iconSize: 24,
-              onTap: controller.changeInx,
-              items: [
+        return BottomAppBar(
+          shape: const CircularNotchedRectangle(),
+          notchMargin: 10,
+          color: Colors.blueGrey,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 6),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
                 _buildBarItem(
-                  CupertinoIcons.home,
-                  "Home",
-                  controller.curratInx == 0,
+                  icon: CupertinoIcons.home,
+                  text: "Home",
+                  isSelected: controller.curratInx == 0,
+                  onTap: () => controller.changeInx(0),
                 ),
                 _buildBarItem(
-                  CupertinoIcons.delete,
-                  "Delete",
-                  controller.curratInx == 1,
-                ),
-                _buildBarItem(
-                  CupertinoIcons.printer,
-                  "Hestory",
-                  controller.curratInx == 2,
+                  icon: CupertinoIcons.printer,
+                  text: "History",
+                  isSelected: controller.curratInx == 2,
+                  onTap: () => controller.changeInx(2),
                 ),
               ],
             ),
@@ -60,21 +52,26 @@ class NevBarScreen extends GetView<NevBarController> {
   }
 }
 
-BottomNavigationBarItem _buildBarItem(
-  IconData icon,
-  String text,
-  bool isSelected,
-) {
-  return BottomNavigationBarItem(
-    icon: Padding(
-      padding: const EdgeInsets.only(top: 8.0),
-      child: Icon(icon, color: isSelected ? Colors.white : Colors.grey),
+Widget _buildBarItem({
+  required IconData icon,
+  required String text,
+  required bool isSelected,
+  required VoidCallback onTap,
+}) {
+  return InkWell(
+    onTap: onTap,
+    child: Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Icon(icon, color: isSelected ? Colors.white : Colors.grey),
+        Text(
+          text,
+          style: TextStyle(
+            fontSize: 12.sp,
+            color: isSelected ? Colors.white : Colors.grey,
+          ),
+        ),
+      ],
     ),
-    activeIcon: Padding(
-      padding: const EdgeInsets.only(top: 8.0),
-      child: Icon(icon, color: Colors.white),
-    ),
-
-    label: text,
   );
 }
