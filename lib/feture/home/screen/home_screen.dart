@@ -78,7 +78,6 @@ class HomeScreen extends StatelessWidget {
                               price: data.price,
                             ),
                           );
-                          // sucessToast("${data.id}");
                         },
 
                         child: Card(
