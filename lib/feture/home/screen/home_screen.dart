@@ -10,7 +10,6 @@ import 'package:ofline_database_with_hive/core/util/custom_alart_dilog.dart';
 import 'package:ofline_database_with_hive/core/util/custom_alart_textFiled.dart';
 import 'package:ofline_database_with_hive/feture/home/controller/home_controller.dart';
 import 'package:ofline_database_with_hive/feture/product_detail/screen/product_detail.dart';
-import 'package:ofline_database_with_hive/route/app_route.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
