@@ -34,12 +34,11 @@ class HomeScreen extends StatelessWidget {
         color: Colors.blueGrey,
       ),
 
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => Get.toNamed(AppRoute.addProduct),
-        backgroundColor: Colors.green,
-        child: Icon(Icons.add, color: Colors.white),
-      ),
-
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () => Get.toNamed(AppRoute.addProduct),
+      //   backgroundColor: Colors.green,
+      //   child: Icon(Icons.add, color: Colors.white),
+      // ),
       body: Obx(() {
         if (controller.isLoading.value) {
           return SpinKitCircle(color: Colors.green, size: 50.sp);

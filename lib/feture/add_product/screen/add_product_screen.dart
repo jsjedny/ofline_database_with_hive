@@ -24,15 +24,15 @@ class AddProductScreen extends StatelessWidget {
           centerTitle: true,
           barHeight: 60.h,
           color: Colors.blueGrey,
-          leding: Padding(
-            padding: const EdgeInsets.only(left: 10.0, top: 5.0),
-            child: IconButton(
-              onPressed: () {
-                Get.back();
-              },
-              icon: Icon(CupertinoIcons.back, color: Colors.white),
-            ),
-          ),
+          // leding: Padding(
+          //   padding: const EdgeInsets.only(left: 10.0, top: 5.0),
+          //   child: IconButton(
+          //     onPressed: () {
+          //       Get.back();
+          //     },
+          //     icon: Icon(CupertinoIcons.back, color: Colors.white),
+          //   ),
+          // ),
         ),
         body: Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 30),

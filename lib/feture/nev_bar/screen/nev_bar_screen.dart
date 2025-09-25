@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:ofline_database_with_hive/feture/nev_bar/controller/nev_bar_controller.dart';
 
@@ -12,39 +13,53 @@ class NevBarScreen extends GetView<NevBarController> {
     return Scaffold(
       body: Obx(() => controller.screen[controller.curratInx]),
 
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => controller.changeInx(1),
-        heroTag: null,
-        backgroundColor: Colors.redAccent,
-
-        child: const Icon(CupertinoIcons.delete, color: Colors.white),
+      floatingActionButton: SizedBox(
+        height: 50.h,
+        width: 50.w,
+        child: FloatingActionButton(
+          shape: CircleBorder(),
+          onPressed: () => controller.changeInx(2),
+          backgroundColor: Colors.green,
+          child: const Icon(CupertinoIcons.add, color: Colors.white),
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
 
       bottomNavigationBar: Obx(() {
         return BottomAppBar(
+          height: 65.h,
           shape: const CircularNotchedRectangle(),
-          notchMargin: 10,
+          notchMargin: 8,
           color: Colors.blueGrey,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 6),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                _buildBarItem(
-                  icon: CupertinoIcons.home,
-                  text: "Home",
-                  isSelected: controller.curratInx == 0,
-                  onTap: () => controller.changeInx(0),
-                ),
-                _buildBarItem(
-                  icon: CupertinoIcons.printer,
-                  text: "History",
-                  isSelected: controller.curratInx == 2,
-                  onTap: () => controller.changeInx(2),
-                ),
-              ],
-            ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              _buildBarItem(
+                icon: CupertinoIcons.home,
+                text: "Home",
+                isSelected: controller.curratInx == 0,
+                onTap: () => controller.changeInx(0),
+              ),
+              _buildBarItem(
+                icon: CupertinoIcons.delete,
+                text: "Delete",
+                isSelected: controller.curratInx == 1,
+                onTap: () => controller.changeInx(1),
+              ),
+              Gap(10.w),
+              _buildBarItem(
+                icon: CupertinoIcons.printer,
+                text: "History",
+                isSelected: controller.curratInx == 3,
+                onTap: () => controller.changeInx(3),
+              ),
+              _buildBarItem(
+                icon: CupertinoIcons.person,
+                text: "Account",
+                isSelected: controller.curratInx == 4,
+                onTap: () => controller.changeInx(4),
+              ),
+            ],
           ),
         );
       }),
